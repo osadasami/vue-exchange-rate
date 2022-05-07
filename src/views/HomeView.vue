@@ -1,19 +1,28 @@
 <script setup lang="ts">
 import UserInput from '@/components/UserInput.vue'
-import { useMainStore } from '@/stores/main'
+import { useStore } from '@/stores/main'
 
-const store = useMainStore()
+const store = useStore()
 </script>
 
 <template>
   <main>
-    <UserInput />
-    <div v-if="store.$state.showRates">
-      {{ store.$state.amount }}
-      {{ store.$state.baseCode }}
-      ->
-      {{ store.$state.rate }}
-      {{ store.$state.targetCode }}
+    <UserInput
+      v-if="store.response.rates"
+      :value="store.userInput.value"
+      :base-code="store.userInput.baseCode"
+      :target-code="store.userInput.targetCode"
+      :amount="store.userInput.amount"
+      :valid-codes="store.validCodes"
+      @onParsed="store.updateUserInput"
+    />
+
+    <div v-if="store.rate">
+      {{ store.userInput.amount }}
+      {{ store.userInput.baseCode }}
+      =
+      {{ store.rate }}
+      {{ store.userInput.targetCode }}
     </div>
   </main>
 </template>

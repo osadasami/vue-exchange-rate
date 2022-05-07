@@ -1,46 +1,32 @@
-# vue-exchange-rate
+## Task
 
-This template should help get you started developing with Vue 3 in Vite.
+https://github.com/appbooster/test-assignments/blob/master/tasks/frontend.md
 
-## Recommended IDE Setup
+Напишите SPA для конвертирования валют. Для получения текущих курсов найдите и используйте любое отрытое API.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
+Приложение должно состоять из двух страниц:
 
-## Type Support for `.vue` Imports in TS
+1. Конвертер из одной валюты в другую. На этой странице должно быть текстовое поле, в которое можно ввести текст в виде 15 usd in rub и получить результат.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+2. Страница с текущими курсами валют. На этой странице пользователь должен видеть «свежие» курсы валют относительно базовой валюты — например, если базовая валюта — рубль, то пользователь видит, что 1 USD = 63.49 RUB, а 1 EUR = 72.20
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+По-умолчанию у пользователя должна определяться «базовая» валюта, которую он может настроить.
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+Плюсом будет:
+- Хорошо продуманный интерфейс и внешний вид
+- Тесты
+- Максимальная скорость работы приложения (как при загрузке приложения, так и при конвертировании валют)
 
-## Customize configuration
+Для реализации используйте
+- Любые библиотеки, которые считаете уместными
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## ExchangeRate-API
 
-## Project Setup
+Site
+https://www.exchangerate-api.com/docs/free
 
-```sh
-npm install
-```
+Api
+https://open.er-api.com/v6/latest/USD
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+Supported currency codes
+https://www.exchangerate-api.com/docs/supported-currencies

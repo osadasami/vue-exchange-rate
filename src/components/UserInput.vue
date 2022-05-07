@@ -1,38 +1,62 @@
 <script setup lang="ts">
-import { useMainStore } from '@/stores/main'
 import { ref, watch } from 'vue'
-const userInput = ref('')
 
-const store = useMainStore()
+export type userInput = {
+  value: string
+  baseCode: string
+  targetCode: string
+  amount: number
+}
 
-watch(userInput, (value) => {
-  parseUserInput(value)
+const props = defineProps<{
+  value: string
+  baseCode: string
+  targetCode: string
+  amount: number
+  validCodes: string[]
+}>()
+
+const emit = defineEmits<{
+  (e: 'onParsed', data: userInput): void
+  (e: 'onInput', value: string): void
+}>()
+
+const input = ref(props.value)
+
+watch(input, (value) => {
+  emit('onInput', value)
+
+  try {
+    const data = parseUserInput(value)
+    emit('onParsed', data)
+  } catch (err: any) {
+    console.log(err.message)
+  }
 })
 
-function parseUserInput(userInput: string) {
-  store.$state.showRates = false
+function parseUserInput(value: string): userInput {
   const parsedUserInputFormat = new RegExp(/(\d+)\s(\w+)\sin\s(\w+)/)
-  const isUserInputValid = parsedUserInputFormat.test(userInput)
+  const isUserInputValid = parsedUserInputFormat.test(value)
 
-  if (isUserInputValid) {
-    const result = userInput.match(parsedUserInputFormat)
-    if (result === null) return
-    const amount = Number(result[1])
-    const baseCode = result[2].toUpperCase()
-    const targetCode = result[3].toUpperCase()
+  if (!isUserInputValid) throw new Error('Input not valid')
 
-    if (amount <= 0) return
-    if (
-      !Object.keys(store.$state.result.rates).includes(baseCode) ||
-      !Object.keys(store.$state.result.rates).includes(targetCode)
-    )
-      return
+  const result = value.match(parsedUserInputFormat)
+  let amount = Number(result![1])
+  const baseCode = result![2].toUpperCase()
+  const targetCode = result![3].toUpperCase()
 
-    store.applyUserInput(amount, baseCode, targetCode)
-  }
+  if (amount <= 0) throw new Error('Amount must be positive')
+
+  if (
+    !props.validCodes.includes(baseCode) ||
+    !props.validCodes.includes(targetCode)
+  )
+    throw new Error('Invalid code')
+
+  return { baseCode, targetCode, amount, value }
 }
 </script>
 
 <template>
-  <input type="text" v-model="userInput" />
+  <input type="text" v-model="input" placeholder="15 usd in rub" />
 </template>

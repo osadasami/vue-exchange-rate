@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import HelloWorld from '@/components/HelloWorld.vue'
-import { useMainStore } from '@/stores/main'
+import { useStore } from '@/stores/main'
 import { onMounted } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
-const store = useMainStore()
+import { RouterLink } from 'vue-router'
+
+const store = useStore()
 
 onMounted(() => {
-  store.fetchRate(store.$state.baseCode)
+  store.setCurrency(navigator.language)
+  store.fetchRate(store.userInput.baseCode)
 })
 </script>
 
@@ -24,8 +26,8 @@ onMounted(() => {
       <HelloWorld msg="You did it!" />
 
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/">Converter</RouterLink>
+        <RouterLink to="/allrates">All rates</RouterLink>
       </nav>
     </div>
   </header>
