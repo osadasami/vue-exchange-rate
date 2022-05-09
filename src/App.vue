@@ -8,7 +8,16 @@ const store = useStore()
 
 onMounted(() => {
   store.setCurrency(navigator.language)
-  store.fetchRate(store.userInput.baseCode)
+  const localStorageState = localStorage.getItem('state')
+  if (localStorageState) {
+    store.$state = JSON.parse(localStorageState)
+  } else {
+    store.fetchRateAndCache(store.userInput.baseCode)
+  }
+})
+
+store.$subscribe((mut, state) => {
+  localStorage.setItem('state', JSON.stringify(state))
 })
 </script>
 

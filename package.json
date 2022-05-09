@@ -9,10 +9,13 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@vueuse/core": "^8.4.2",
+    "add": "^2.0.6",
     "jnltc": "^1.0.3",
     "pinia": "^2.0.13",
     "vue": "^3.2.33",
-    "vue-router": "^4.0.14"
+    "vue-router": "^4.0.14",
+    "yarn": "^1.22.18"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",

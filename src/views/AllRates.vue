@@ -10,11 +10,11 @@ const targetCode = computed(() => {
 })
 
 onMounted(() => {
-  store.fetchRate(store.userInput.targetCode)
+  store.fetchRateAndCache(store.userInput.targetCode)
 })
 
 watch(targetCode, (value) => {
-  store.fetchRate(value)
+  store.fetchRateAndCache(value)
 })
 </script>
 
@@ -29,7 +29,8 @@ watch(targetCode, (value) => {
   </h1>
   <ul>
     <li v-for="(rate, code) in store.response.rates">
-      {{ code }} {{ store.convertBack(rate) }}
+      1 {{ code }} = {{ store.convertBack(rate) }}
+      {{ store.userInput.targetCode }}
     </li>
   </ul>
 </template>

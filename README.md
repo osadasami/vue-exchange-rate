@@ -22,11 +22,11 @@ https://github.com/appbooster/test-assignments/blob/master/tasks/frontend.md
 
 ## ExchangeRate-API
 
-Site
+Site:
 https://www.exchangerate-api.com/docs/free
 
-Api
+Api:
 https://open.er-api.com/v6/latest/USD
 
-Supported currency codes
+Supported currency codes:
 https://www.exchangerate-api.com/docs/supported-currencies
