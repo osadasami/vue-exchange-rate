@@ -7,6 +7,13 @@ const store = useStore()
 
 <template>
   <main>
+    <span
+      class="relative bg-indigo-400 text-indigo-50 p-2 rounded-full border border-indigo-500 shadow -bottom-3 left-5"
+      v-if="store.rate"
+    >
+      {{ store.rate }}
+      {{ store.userInput.targetCode }}
+    </span>
     <UserInput
       v-if="store.response.rates"
       :value="store.userInput.value"
@@ -16,13 +23,5 @@ const store = useStore()
       :valid-codes="store.validCodes"
       @onParsed="store.updateUserInput"
     />
-
-    <div v-if="store.rate">
-      {{ store.userInput.amount }}
-      {{ store.userInput.baseCode }}
-      =
-      {{ store.rate }}
-      {{ store.userInput.targetCode }}
-    </div>
   </main>
 </template>

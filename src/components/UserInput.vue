@@ -58,5 +58,10 @@ function parseUserInput(value: string): userInput {
 </script>
 
 <template>
-  <input type="text" v-model="input" placeholder="15 usd in rub" />
+  <input
+    type="text"
+    v-model="input"
+    placeholder="15 usd in rub"
+    class="w-full px-6 py-8 shadow rounded-lg border uppercase"
+  />
 </template>
