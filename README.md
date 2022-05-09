@@ -1,5 +1,13 @@
-## Task
+## Конвертер валют на Vue 3
+https://vue-exchange-rate-phi.vercel.app/
 
+https://user-images.githubusercontent.com/13532220/167410025-56cb1a51-f03f-427a-a3d8-88697239e2c9.mp4
+
+## Заметки
+- Написал пакет, который конвертирует `navigator.language` в код валюты. Например `en-US` -> `USD`. Сам пакет [здесь](https://www.npmjs.com/package/jnltc)
+- Результаты запросов к API кеширую в `localStorage` на один день, потому что API обновляет данные раз в день, и нет смысла делать запросы каждый раз на одни и те же данные
+
+## Задача
 https://github.com/appbooster/test-assignments/blob/master/tasks/frontend.md
 
 Напишите SPA для конвертирования валют. Для получения текущих курсов найдите и используйте любое отрытое API.
